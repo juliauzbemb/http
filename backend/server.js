@@ -1,17 +1,9 @@
 import { TicketFull } from './ticket.js';
-import { getTickets, getTicketsFull, addTicketFull, changeTicketById, getTicketByName, deleteById, changeStatusById } from './ticketsfunctions.js';
+import { getTickets, getTicketsFull, addTicketFull, changeById, deleteById, changeStatusById, getTicketById } from './ticketsfunctions.js';
 import Koa from 'koa';
-
-import fs from 'fs';
-import path from 'path';
 import http from 'http';
-
 import { koaBody } from 'koa-body';
-
-import koaStatic from 'koa-static';
-
 import cors from '@koa/cors';
-
 
 const app = new Koa();
 
@@ -24,12 +16,12 @@ app.use(koaBody({
 }));
 
 app.use(async(ctx) => {
-  // console.log(ctx.request.body);
   // ctx.response.set('Access-Control-Allow-Origin', '*');
   // ctx.response.set('Access-Control-Allow-Methods', 'DELETE, PUT, PATCH, GET, POST');
   // ctx.response.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
   const { method } = ctx.request.query;
+  console.log(method);
   
   switch (method) {
     case 'createTicket':
@@ -40,46 +32,47 @@ app.use(async(ctx) => {
         console.log('in the list');
         ctx.response.body = 'задача уже в списке';
       } else {
-          addTicketFull(new_ticket);
-          ctx.response.body = new_ticket;
-        }
+        addTicketFull(new_ticket);
+        ctx.response.body = new_ticket;
+      };
       return;
+      
     case 'allTickets':
       try {
-          ctx.response.body = getTickets().filter((el) => el.status === false);
-          } catch (err) {
-          console.log(err);
-          };
+        ctx.response.body = getTickets().filter((el) => el.status === false);
+      } catch (err) {
+        console.log(err);
+      };
       return;
+
     case 'ticketById':
       let { id } = ctx.request.query;
       let ticketTarget;
+
       if (ctx.request.query.change === 'true') {
-        console.log('change from server');
-        console.log(ctx.request.body);
-        changeTicketById(id, ctx.request.body.name, ctx.request.body.description);
-        console.log('end');
-        let targetTicket = getTicketByName(ctx.request.body.name);
-        ctx.response.status = 201;
-        ctx.response.body = targetTicket;
+        changeById(id, ctx.request.body.name, ctx.request.body.description);
+        ctx.response.status = 200;
+        ticketTarget = getTicketById(id);
+        ctx.response.body = ticketTarget;
         return;
       };
+
       if (ctx.request.query.delete === 'true') {
-        console.log('delete from server');
         deleteById(id);
         ctx.response.status = 200;
         return;
       };
+
       if (ctx.request.query.status === 'true') {
-        console.log('status change');
         changeStatusById(id);
         ctx.response.status = 200;
         return;
       };
-      console.log('without change');
-      ticketTarget = getTicketsFull().find((item) => item.id.toString() === id);
+
+      ticketTarget = getTicketById(id);
       ctx.response.body = ticketTarget;
       return;
+
     default: 
       ctx.response.status = 404;
       return;
