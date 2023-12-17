@@ -1,0 +1,118 @@
+.add-ticket {
+    text-align: right;
+    margin-right: 40px;
+
+}
+
+.add-section {
+    position: fixed;
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 20px;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    z-index: 10;
+}
+
+.hidden {
+    display: none;
+}
+
+.add-title {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    margin-left: 15px;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid gainsboro;
+
+}
+
+.tickets {
+    margin: 0 auto;
+    width: 90%;
+    border-top: 1px solid gainsboro;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+label, input {
+    display: block;
+}
+
+label {
+    padding-bottom: 10px;
+}
+
+.description, .name {
+    width: 97%;
+    border: 1px solid gainsboro;
+    font-size: 15px;
+    padding: 4px;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid gainsboro;
+}
+
+.tickets-items {
+    position: relative;
+}
+
+.tickets-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    padding: 15px;
+}
+
+.tickets-item-status {
+    width: 25px;
+    height: 25px;
+    border: 1px solid red;
+    border-radius: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.tickets-item-change, .tickets-item-delete {
+    width: 25px;
+    height: 25px;
+    border: 1px solid red;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.tickets-item-edit {
+    display: flex;
+    width: 80px;
+    justify-content: space-around;
+}
+
+.tickets-item-name-full {
+    display: flex;
+    width: 550px;
+}
+
+.tickets-item-name {
+    padding-bottom: 10px;
+}

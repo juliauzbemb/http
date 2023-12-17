@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Http</title>
+</head>
+<body>
+  <div class="add-ticket">
+    <button class="btn add-ticket-btn">Добавить тикет</button>
+  </div> 
+  <div class="add-section hidden">
+    <h1 class="add-title">Добавить тикет</h1>
+    <form action="http://localhost:7070/?method=createTicket" class="add-form" enctype="multipart/form-data">
+      <label for="name">Краткое описание</label>
+      <input id="name" type="text" name="name" class="name" required>
+      <label for="description">Подробное описание</label>
+      <textarea id="description" type="text" name="description" class="description" required></textarea>
+      <div class="buttons">
+        <button type="button" class="btn add-cancel">Отмена</button>
+        <button class="btn add-button">Ок</button>
+      </div>
+    </form>
+  </div>
+  <div class="tickets">
+    <div class="tickets-items">
+      <div class="tickets-item">
+        <div class="tickets-item-element tickets-item-name-full">
+          <div class="tickets-item-status"></div>
+          <div class="tickets-item-name-block">
+            <div class="tickets-item-name">test-name</div>
+            <div class="tickets-item-details hidden">test-description</div>
+          </div>
+        </div>
+        <div class="tickets-item-element tickets-item-date">12.12.2023 12.22</div>
+        <div class="tickets-item-edit">
+          <div class="tickets-item-element tickets-item-change">&#9998;</div>
+          <div class="tickets-item-element tickets-item-delete">&#x2715;</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

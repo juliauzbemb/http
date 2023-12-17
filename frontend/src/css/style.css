@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #999;
+    position: relative;
+    color: gray;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: gray;
+}
